@@ -32,5 +32,4 @@
     @endforeach
 </body>
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('vendor/nldev/js/inputs.js') }}"></script>
 </html>

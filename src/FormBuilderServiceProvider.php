@@ -4,7 +4,7 @@ namespace NLDev\FormBuilder;
 
 use Illuminate\Support\ServiceProvider;
 
-class FormBuilderProvider extends ServiceProvider
+class FormBuilderServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -13,8 +13,7 @@ class FormBuilderProvider extends ServiceProvider
      */
     public function register()
     {
-        // $this->app->make('NLDev\FormBuilder\FormBuilderController');
-        $this->loadViewsFrom(__DIR__.'/views', 'FormBuilder');
+        $this->loadViewsFrom(__DIR__.'/../views', 'FormBuilder');
     }
 
     /**
@@ -27,8 +26,8 @@ class FormBuilderProvider extends ServiceProvider
         include __DIR__.'/routes.php';
 
         $this->publishes([
-            __DIR__.'/assets/js' => public_path('vendor/nldev/js'),
-            __DIR__.'/assets/css' => public_path('vendor/nldev/css'),
-        ], 'nldev');
+            __DIR__.'/../assets/js' => resource_path('js'),
+            __DIR__.'/../assets/css' => resource_path('css'),
+        ], 'nldev/FormBuilder');
     }
 }
