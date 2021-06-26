@@ -29,7 +29,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "NLDev\\FormBuilder\\FormBuilderProvider"
+                "NLDev\\FormBuilder\\FormBuilderServiceProvider"
             ],
             "aliases": {
                 "FormBuilder": "NLDev\\FormBuilder\\Facades\\FormBuilder"
