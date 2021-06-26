@@ -1,7 +1,7 @@
 {
     "name": "nldev/formbuilder",
-    "description": ":package_description",
-    "license": "license",
+    "description": "Form builder",
+    "license": "MIT",
     "authors": [{
         "name": "nldev",
         "email": "noualdev@gmail.com",
