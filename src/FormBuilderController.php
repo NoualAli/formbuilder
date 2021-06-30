@@ -4,11 +4,11 @@ namespace NLDev\FormBuilder;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use NLDev\FormBuilder\Traits\FormTrait;
+use NLDev\FormBuilder\Traits\FormsTrait;
 
 class FormBuilderController extends Controller
 {
-    use FormTrait;
+    use FormsTrait;
 
     public function index()
     {
