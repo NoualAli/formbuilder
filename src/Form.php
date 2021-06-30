@@ -155,6 +155,10 @@ class Form
         return $this;
     }
 
+    public function renderScripts(){
+        return '<script src="'.__DIR__.'/../assets/js/inputs.js'.'"></script>';
+    }
+
     public function render()
     {
         $form = $this;
