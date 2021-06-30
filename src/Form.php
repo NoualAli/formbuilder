@@ -41,6 +41,11 @@ class Form
     private $title = '';
 
     /**
+     * @var string
+     */
+    private $container_width = 'is-6';
+
+    /**
      * Array that contain all inputs of Form
      *
      * @var array
@@ -63,18 +68,27 @@ class Form
         return $this->$name;
     }
 
-    public function __set($key, $value){
-        if(method_exists($this, $key)){
+    public function __set($key, $value)
+    {
+        if (method_exists($this, $key)) {
             $this->$key($value);
-        }else{
+        } else {
             $this->$key = $value;
         }
     }
 
     // Setters
 
-    public function title(?string $title){
+    public function title(?string $title)
+    {
         $this->title = ucfirst($title);
+        return $this;
+    }
+
+    public function container_width(string $width)
+    {
+        $this->container_width = $width;
+        return $this;
     }
 
     /**
@@ -133,15 +147,16 @@ class Form
      */
     public function add(array $inputs)
     {
-        if(!empty($this->inputs)){
+        if (!empty($this->inputs)) {
             $this->inputs = array_merge($inputs, $this->inputs);
-        }else{
+        } else {
             $this->inputs = $inputs;
         }
         return $this;
     }
 
-    public function render(){
+    public function render()
+    {
         $form = $this;
         return view('FormBuilder::form.form', compact('form'));
     }
