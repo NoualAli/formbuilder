@@ -13,23 +13,26 @@
 
 <body>
     @if ($error = Session::get('error'))
-            <div class="container">
-                <div class="notification is-danger">
-                    <p>{{ $error }}</p>
-                </div>
+        <div class="container">
+            <div class="notification is-danger">
+                <p>{{ $error }}</p>
             </div>
+        </div>
     @endif
     @if ($success = Session::get('success'))
-            <div class="container">
-                <div class="notification is-success">
-                    <p>{{ $success }}</p>
-                </div>
+        <div class="container">
+            <div class="notification is-success">
+                <p>{{ $success }}</p>
             </div>
+        </div>
     @endif
 
     @foreach ($forms as $form)
         {!! $form->render() !!}
     @endforeach
 </body>
-    <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+@foreach ($forms as $form)
+    {!! $form->renderScripts() !!}
+@endforeach
 </html>
