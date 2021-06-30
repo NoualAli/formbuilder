@@ -155,8 +155,12 @@ class Form
         return $this;
     }
 
+    public function renderStyleSheet(){
+        return '<script src="'.asset('css/form.css').'"></script>';
+    }
+
     public function renderScripts(){
-        return '<script src="'.__DIR__.'/../assets/js/inputs.js'.'"></script>';
+        return '<script src="'.asset('js/form.js').'"></script>';
     }
 
     public function render()
