@@ -1,30 +1,29 @@
 form {
-    position: relative;
+    position: relative
 }
 
 select[data-type="tags"] {
-    border-color: #363636 !important;
+    border-color: #363636!important
 }
 
 .show-password {
-    color: #313131 !important;
-    pointer-events: all !important;
-    cursor: pointer !important;
+    color: #313131!important;
+    cursor: pointer!important
 }
 
 .label.required::after {
     content: '*';
-    margin-left: 5px;
+    margin-left: 5px
 }
 
 .label.required::after,
 .help.is-danger,
 .has-text-danger {
-    color: var(--danger) !important;
+    color: var(--danger)!important
 }
 
 .input.small {
-    width: 33% !important;
+    width: 33%!important
 }
 
 .select select:hover,
@@ -33,7 +32,7 @@ select[data-type="tags"] {
 .select select.is-hovered,
 .is-hovered.textarea,
 .is-hovered.input {
-    border-color: transparent;
+    border-color: transparent
 }
 
 .is-active.tags-input,
@@ -41,65 +40,61 @@ select[data-type="tags"] {
 .tags-input:active,
 .tags-input:focus,
 .input:focus {
-    border-color: var(--mainColorLight) !important;
-    box-shadow: 0 0 0 0.125em rgba(50, 115, 220, 0.25) !important;
+    border-color: var(--mainColorLight)!important;
+    box-shadow: 0 0 0 .125em rgba(50, 115, 220, 0.25)!important
 }
 
 .is-danger.input,
 .is-danger textarea {
-    border-color: var(--danger);
+    border-color: var(--danger)
 }
 
 .control .icon,
 input::placeholder {
-    color: #313131 !important;
+    color: #313131!important
 }
 
 .field.has-image {
     width: 100%;
-    position: relative !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative!important;
+    display: flex
 }
 
 .avatar-upload {
     position: relative;
     max-width: 205px;
-    margin: 50px auto;
+    margin: 50px auto
 }
 
 .avatar-upload .avatar-edit {
     position: absolute;
     right: 12px;
     z-index: 1;
-    top: 10px;
+    top: 10px
 }
 
 .avatar-upload .avatar-edit input {
-    display: none;
+    display: none
 }
 
 .avatar-upload .avatar-edit input+label {
     display: flex;
-    justify-content: center;
-    align-items: center;
     font-size: 1.5rem;
     width: 34px;
     height: 34px;
     margin-bottom: 0;
     border-radius: 100%;
-    background: #FFFFFF;
+    background: #FFF;
     border: 1px solid transparent;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, .3);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .3);
     cursor: pointer;
-    font-weight: normal;
-    transition: all .2s ease-in-out;
+    font-weight: 400;
+    transition: all .2s ease-in-out
 }
 
 .avatar-upload .avatar-edit input+label:hover {
     background: #f1f1f1;
-    border-color: #d6d6d6;
+    border-color: #d6d6d6
 }
 
 .avatar-upload .avatar-preview {
@@ -108,22 +103,20 @@ input::placeholder {
     position: relative;
     border-radius: 100%;
     border: 6px solid var(--mainColorLight);
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    overflow: hidden
 }
 
-.avatar-upload .avatar-preview>#imagePreview {
+.avatar-upload .avatar-preview>#imagepreview {
     display: block;
     max-width: 100%;
     /* border-radius: 50%; */
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center
 }
 
-.control.has-icons-right .icon.has-tooltip {
-    pointer-events: all !important;
-}
+.control.has-icons-right .icon.has-tooltip {}
 
 #sending_form {
     position: absolute;
@@ -134,28 +127,20 @@ input::placeholder {
     z-index: -100;
     outline: none;
     cursor: progress;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex
 }
 
 #form_loader_container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: flex
 }
 
 #sending_form.is-loading {
-    user-select: none;
     background-color: rgba(255, 255, 255, .7);
-    z-index: 1000;
+    z-index: 1000
 }
 
 .show_file_informations.file-name {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: flex
 }
 
 
@@ -163,17 +148,14 @@ input::placeholder {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+    margin: 0
 }
 
 
 /* Firefox */
 
-input[type=number] {
-    -moz-appearance: textfield;
-}
+input[type=number] {}
 
 .datetimepicker-footer-today {
-    color: #2981BA !important;
+    color: #2981BA!important
 }

@@ -156,7 +156,7 @@ class Form
     }
 
     public function renderStyleSheet(){
-        return '<script src="'.asset('css/form.css').'"></script>';
+        return '<link rel="stylesheet" href="'.asset('css/form.css').'">';
     }
 
     public function renderScripts(){
