@@ -65,15 +65,21 @@ function createCounter(maxLength) {
  */
 function updateCounter($counter, $input, maxLength) {
     maxLength = Number(maxLength) // convert string to number
-    let currentLength = 0 // init current length to 0
-
-    // Listen to input event
+        // Listen to input event
     $input.addEventListener('input', () => {
-        // for each input update current length
-        currentLength = $input.value.length
-            // Update counter
-        $counter.innerHTML = `${currentLength}/${maxLength}`
+        setCounterValue($counter, $input, maxLength)
     })
+
+    if ($input.value.length) {
+        setCounterValue($counter, $input, maxLength)
+    }
+}
+
+function setCounterValue($counter, $input, maxLength) {
+    // for each input update current length
+    let currentLength = $input.value.length
+        // Update counter
+    $counter.innerHTML = `${currentLength}/${maxLength}`
 }
 
 // Handle password visibility
