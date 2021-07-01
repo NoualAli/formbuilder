@@ -14,7 +14,7 @@ class FormBuilderController extends Controller
     {
         $data = ['test1', 'test2', 'test3'];
 
-        $form = $this->form(route('constructor.store'), 'POST', true, 'NLDev FormBuilder')->submit();
+        $form = $this->form('constructor.store', 'POST', true, 'NLDev FormBuilder')->submit();
 
         $form->add([
             $this->input('file', 'file', 'Fichier')
@@ -59,7 +59,7 @@ class FormBuilderController extends Controller
         $form->add([
             '<h1 class="title has-text-grey">Simple inputs</h1>',
             [
-                $this->input('text', 'text', 'Text')->placeholder('Ceci est un champ de type text')->maxLength(10)->icon('font')->help('help'),
+                $this->input('text', 'text', 'Text')->placeholder('Ceci est un champ de type text')->maxLength(10)->icon('font')->help('help')->value('test'),
                 $this->input('number', 'number', 'Number')->placeholder('Ceci est un champ de type number')->maxLength(2)->icon('sort-numeric-up')->max(99)->min(1),
             ],
             [
