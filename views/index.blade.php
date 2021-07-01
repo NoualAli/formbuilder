@@ -35,7 +35,7 @@
 </body>
 <script src="{{ asset('js/app.js') }}"></script>
 @foreach ($forms as $form)
-    {!! $form->renderScripts() !!}
+    {!! $form->renderScript() !!}
 @endforeach
 
 </html>
