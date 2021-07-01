@@ -8,62 +8,25 @@ use Illuminate\Support\Facades\Route;
 class Form
 {
     /**
-     * Form method
-     * @var string
-     */
-    private $method = '';
-
-    /**
-     * Form media
-     *
-     * @var bool
-     */
-    private $media = false;
-
-    /**
-     * Form action
-     *
-     * @var string
-     */
-    private $action = '';
-
-    /**
-     * Form submit
-     *
-     * @var array
-     */
-    private $submit = [];
-
-    /**
-     * Form title
-     *
-     * @var string
-     */
-    private $title = '';
-
-    /**
-     * @var string
-     */
-    private $container_width = 'is-6';
-
-    /**
      * Array that contain all inputs of Form
      *
      * @var array
      */
-    private $inputs = [];
+    public $inputs = [];
+
 
     /**
-     * @var null
+     * Array that contain all form options
+     *
+     * @var array
      */
-    private $data = null;
+    public $options = ['media' => false, 'data' => null, 'title' => null];
 
 
-    public function __construct(string $action, string $methhod = 'POST', bool $media = false, ?string $title = null)
+    public function __construct(string $routename, string $methhod = 'POST', bool $media = false)
     {
-        $this->action($action);
+        $this->routename($routename);
         $this->method($methhod);
-        $this->title($title);
         if ($media) {
             $this->hasMedia();
         }
@@ -71,7 +34,7 @@ class Form
 
     public function __get($name)
     {
-        return $this->$name;
+        return $this->options[$name];
     }
 
     public function __set($key, $value)
@@ -79,9 +42,16 @@ class Form
         if (method_exists($this, $key)) {
             $this->$key($value);
         } else {
-            $this->$key = $value;
+            if(property_exists($this, $key)){
+                return $this->$key;
+            }else{
+                throw new Exception("La method $key n'existe pas");
+            }
         }
     }
+
+
+    // Setters
 
     /**
      * Ajoute le modèle qui sera utiliser pour le formulaire
@@ -92,26 +62,38 @@ class Form
      */
     public function data(object $data)
     {
-        $this->data = $data;
-        return $this;
-    }
-
-    // Setters
-
-    public function title(?string $title)
-    {
-        $this->title = ucfirst($title);
-        return $this;
-    }
-
-    public function container_width(string $width)
-    {
-        $this->container_width = $width;
+        $this->options['data'] = $data;
         return $this;
     }
 
     /**
-     * Specify form method
+     * Set title to current form
+     *
+     * @param string|null $title
+     *
+     * @return Form
+     */
+    public function title(?string $title)
+    {
+        $this->options['title'] = ucfirst($title);
+        return $this;
+    }
+
+    /**
+     * Change form container width
+     *
+     * @param string $width
+     *
+     * @return Form
+     */
+    public function container_width(string $width)
+    {
+        $this->options['container_width'] = $width;
+        return $this;
+    }
+
+    /**
+     * Set form method @method($method)
      *
      * @param string $method
      *
@@ -121,7 +103,7 @@ class Form
     {
         $method = strtoupper($method);
         if (in_array($method, ['POST', 'PUT', 'GET', 'PATCH'])) {
-            $this->method = $method;
+            $this->options['method'] = $method;
             return $this;
         } else {
             throw new Exception("La méthode $method n'existe pas");
@@ -133,27 +115,43 @@ class Form
      *
      * @return Form
      */
-    private function hasMedia()
+    public function hasMedia()
     {
-        $this->media = true;
+        $this->options['media'] = true;
         return $this;
     }
 
-    private function action(string $action)
+    /**
+     * Set form action routename
+     *
+     * @param string $routename
+     *
+     * @return Form
+     */
+    public function routename(string $routename)
     {
-        if(Route::has($action)){
-            $this->action = $action;
+        if(Route::has($routename)){
+            $this->options['routename'] = $routename;
             return $this;
         }else{
-            throw new Exception("La route '{$action}' n'extiste pas");
+            throw new Exception("La route '{$routename}' n'extiste pas");
         }
     }
 
+    /**
+     * Set submit button
+     *
+     * @param string $text
+     * @param string $icon
+     * @param array $classes
+     *
+     * @return Form
+     */
     public function submit(string $text = 'Enregistrer', string $icon = 'save', array $classes = [])
     {
-        $this->submit['text'] = $text;
-        $this->submit['icon'] = $icon;
-        $this->submit['classes'] = $classes;
+        $this->options['submit']['text'] = $text;
+        $this->options['submit']['icon'] = $icon;
+        $this->options['submit']['classes'] = $classes;
         return $this;
     }
 
@@ -174,17 +172,32 @@ class Form
         return $this;
     }
 
-    public function renderStyleSheet()
+    /**
+     * Render form stylsheet
+     *
+     * @return string
+     */
+    public function renderStyleSheet(): string
     {
         return '<link rel="stylesheet" href="' . asset('css/form.css') . '">';
     }
 
-    public function renderScripts()
+    /**
+     * Render form javascript
+     *
+     * @return string
+     */
+    public function renderScript(): string
     {
         return '<script src="' . asset('js/form.js') . '"></script>';
     }
 
-    public function render()
+    /**
+     * Render form view
+     *
+     * @return object
+     */
+    public function render(): object
     {
         $form = $this;
         return view('FormBuilder::form.form', compact('form'));
