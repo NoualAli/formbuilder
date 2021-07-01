@@ -20,7 +20,7 @@ class Form
      *
      * @var array
      */
-    public $options = ['media' => false, 'data' => null, 'title' => null];
+    public $options = ['media' => false, 'data' => null, 'title' => null, 'container_width' => 'is-6'];
 
 
     public function __construct(string $routename, string $methhod = 'POST', bool $media = false)
