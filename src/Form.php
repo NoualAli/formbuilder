@@ -3,6 +3,7 @@
 namespace NLDev\FormBuilder;
 
 use Exception;
+use Illuminate\Support\Facades\Route;
 
 class Form
 {
@@ -52,6 +53,11 @@ class Form
      */
     private $inputs = [];
 
+    /**
+     * @var null
+     */
+    private $data = null;
+
 
     public function __construct(string $action, string $methhod = 'POST', bool $media = false, ?string $title = null)
     {
@@ -75,6 +81,19 @@ class Form
         } else {
             $this->$key = $value;
         }
+    }
+
+    /**
+     * Ajoute le modèle qui sera utiliser pour le formulaire
+     *
+     * @param object $data
+     *
+     * @return Form
+     */
+    public function data(object $data)
+    {
+        $this->data = $data;
+        return $this;
     }
 
     // Setters
@@ -122,11 +141,11 @@ class Form
 
     private function action(string $action)
     {
-        if (filter_var($action, FILTER_VALIDATE_URL)) {
+        if(Route::has($action)){
             $this->action = $action;
             return $this;
-        } else {
-            throw new Exception("L'action spécifier ne contient pas une URL valide : $action");
+        }else{
+            throw new Exception("La route '{$action}' n'extiste pas");
         }
     }
 
@@ -155,12 +174,14 @@ class Form
         return $this;
     }
 
-    public function renderStyleSheet(){
-        return '<link rel="stylesheet" href="'.asset('css/form.css').'">';
+    public function renderStyleSheet()
+    {
+        return '<link rel="stylesheet" href="' . asset('css/form.css') . '">';
     }
 
-    public function renderScripts(){
-        return '<script src="'.asset('js/form.js').'"></script>';
+    public function renderScripts()
+    {
+        return '<script src="' . asset('js/form.js') . '"></script>';
     }
 
     public function render()
