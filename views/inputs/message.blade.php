@@ -1,3 +1,3 @@
 @error($name)
-    <p class="help is-danger" id="help-{{ $name }}">{{ $message }}</p>
+    <p class="help is-danger is-block" id="help-{{ $name }}">{{ $message }}</p>
 @enderror

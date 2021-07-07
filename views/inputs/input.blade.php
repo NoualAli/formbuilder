@@ -10,10 +10,17 @@ $addonsHelp = $input->help && $input->type !== 'checkbox' && $input->type !== 'c
 $inlineTextHelp = $input->help && ($input->type == 'checkbox' || $input->type == 'checkradio' || $input->type == 'file');
 @endphp
 
-{{-- Label --}}
-@include('FormBuilder::inputs.label')
+@if ($addonsHelp)
+    <div class="field">
+@endif
+@if ($input->type !== 'hidden')
+    {{-- Label --}}
+    @include('FormBuilder::inputs.label')
 
-{{-- Input container --}}
-@include('FormBuilder::inputs.input_header')
-@include('FormBuilder::inputs.'.$input->type)
-@include('FormBuilder::inputs.input_footer')
+    {{-- Input container --}}
+    @include('FormBuilder::inputs.input_header')
+    @include('FormBuilder::inputs.'.$input->type)
+    @include('FormBuilder::inputs.input_footer')
+@else
+    @include('FormBuilder::inputs.'.$input->type)
+@endif

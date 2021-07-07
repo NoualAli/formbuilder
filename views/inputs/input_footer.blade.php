@@ -6,9 +6,17 @@
 {{-- Help message --}}
 @include('FormBuilder::inputs.help_message')
 
-{{-- Error validation message --}}
-@include('FormBuilder::inputs.message')
+@if (!$addonsHelp)
+    {{-- Error validation message --}}
+    @include('FormBuilder::inputs.message')
+@endif
 
 @if ($addonsHelp)
+    </div>
+@endif
+
+@if ($addonsHelp)
+    {{-- Error validation message --}}
+    @include('FormBuilder::inputs.message')
     </div>
 @endif
