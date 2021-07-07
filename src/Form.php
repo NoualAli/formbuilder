@@ -34,7 +34,7 @@ class Form
 
     public function __get($name)
     {
-        return $this->options[$name];
+        return isset($this->options[$name]) ? $this->options[$name] : null;
     }
 
     public function __set($key, $value)
@@ -42,9 +42,9 @@ class Form
         if (method_exists($this, $key)) {
             $this->$key($value);
         } else {
-            if(property_exists($this, $key)){
+            if (property_exists($this, $key)) {
                 return $this->$key;
-            }else{
+            } else {
                 throw new Exception("La method $key n'existe pas");
             }
         }
@@ -128,14 +128,25 @@ class Form
      *
      * @return Form
      */
-    public function routename(string $routename)
+    public function routename($routename)
     {
-        if(Route::has($routename)){
-            $this->options['routename'] = $routename;
-            return $this;
-        }else{
+        if (is_string($routename)) {
+            if (Route::has($routename)) {
+                $this->options['routename'] = $routename;
+            }
+        } elseif (is_array($routename)) {
+            $key = array_key_first($routename);
+            $this->options['routename'] = $key;
+            $this->parameters($routename[$key]);
+        } else {
             throw new Exception("La route '{$routename}' n'extiste pas");
         }
+        return $this;
+    }
+
+    public function parameters(array $parameters){
+        $this->options['parameters']  = $parameters;
+        return $this;
     }
 
     /**

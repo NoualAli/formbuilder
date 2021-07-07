@@ -14,7 +14,7 @@ class FormBuilderController extends Controller
     {
         $data = ['test1', 'test2', 'test3'];
 
-        $form = $this->form('constructor.store', 'POST', true, 'NLDev FormBuilder')->submit();
+        $form = $this->form('constructor.store', 'POST', true, 'NLDev FormBuilder')->submit()->parameters(['test']);
 
         $form->add([
             $this->input('file', 'file', 'Fichier')
@@ -40,10 +40,10 @@ class FormBuilderController extends Controller
         // Select box
         $form->add([
             '<h1 class="title has-text-grey">Select boxes</h1>',
-            $this->input("select", 'select', 'Select', true)->data($data)->help('Ceci est un message d\'aide')->icon('list'),
+            $this->input("select", 'select', 'Select')->data($data)->help('Ceci est un message d\'aide')->icon('list'),
             [
-                $this->input("selectajax", 'select_ajax', 'Select ajax', true)->data($data)->target('select_ajax_target')->action(route('dumy_data'))->value("test2"),
-                $this->input("select", 'select_ajax_target', 'Select ajax target', true)->data(['test 4', 'test 5', 'test 6'])->value('test 5'),
+                $this->input("selectajax", 'select_ajax', 'Select ajax')->data($data)->target('select_ajax_target')->action(route('dumy_data'))->value("test2"),
+                $this->input("select", 'select_ajax_target', 'Select ajax target')->data(['test 4', 'test 5', 'test 6'])->value('test 5'),
             ],
             '<hr/>'
         ]);
@@ -51,7 +51,7 @@ class FormBuilderController extends Controller
         // Checkboxes and radios
         $form->add([
             '<h1 class="title has-text-grey">Checkboxes and Radios</h1>',
-            $this->input('checkbox', 'checkbox', 'Checkbox', true)->data($data)->help('test'),
+            $this->input('checkbox', 'checkbox', 'Checkbox')->data($data)->help('test'),
             $this->input('checkradio', 'checkradio', 'Checkradio')->data($data)
         ]);
 
@@ -78,12 +78,12 @@ class FormBuilderController extends Controller
 
     public function store(Request $request)
     {
-
+        $this->validateData($request);
     }
 
     public function validateData(Request $request){
         return $request->validate([
-            'file' => ['required', 'max:2000', 'file']
+            'password' => ['required', 'in:1'],
         ]);
     }
 }
