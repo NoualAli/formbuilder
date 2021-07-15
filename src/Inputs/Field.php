@@ -49,9 +49,11 @@ abstract class Field
      */
     private $classes = [];
 
-    public function __construct(string $type, string $name, string $label, bool $required = false)
+    public function __construct(string $type, string $name, ?string $label = null, bool $required = false)
     {
-        $this->label = $this->label($label, $name, $required);
+        if($label){
+            $this->label = $this->label($label, $name, $required);
+        }
         $this->required = $required;
         $this->name($name)->type($type);
 
