@@ -1,5 +1,5 @@
 @php
-    $label = $input->label;
+    $label = optional($input->label);
     $required = $label->required ? " required" : null;
     $text = $label->text;
     $inputName = $label->input;
