@@ -26,6 +26,7 @@ class FormBuilderServiceProvider extends ServiceProvider
         include __DIR__.'/routes.php';
 
         $this->publishes([
+            __DIR__.'/../views' => resource_path('views'),
             __DIR__.'/../assets/js' => public_path('js'),
             __DIR__.'/../assets/css' => public_path('css'),
         ], 'nldev/FormBuilder');
