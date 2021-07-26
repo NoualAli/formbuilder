@@ -7,11 +7,11 @@ $default_value = $value;
         @foreach ($data as $key => $value)
             {{-- Input --}}
             <input type="checkbox" class="checkbox is-checkradio is-info" name="{{ $name . '[]' }}"
-                id="{{ $value . '-' . $name }}" value="{{ $value }}"
-                {{ (is_array($default_value) ? in_array($value, $default_value) : $default_value == $value) ? 'checked' : null }}>
-            <label for="{{ $value . '-' . $name }}"
+                id="{{ $key . '-' . $name }}" value="{{ $key }}"
+                {{ (is_array($default_value) ? in_array($key, $default_value) : $default_value == $key) ? 'checked' : null }}>
+            <label for="{{ $key . '-' . $name }}"
                 {{ optional($input->label) ? ' class=has-text-weight-medium' : null }}>
-                {{ $key }}
+                {{ $value }}
             </label>
         @endforeach
     @else

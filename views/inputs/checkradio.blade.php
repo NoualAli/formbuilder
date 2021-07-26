@@ -6,11 +6,12 @@ $default_value = $value;
 @if ($data)
     @foreach ($data as $key => $value)
         {{-- Input --}}
-        <input type="radio" class="checkbox is-checkradio is-info" name="{{ $name }}" id="{{ $value . '-' . $name }}"
-            value="{{ $value }}" {{ $default_value == $value ? 'checked' : null }}>
-        <label for="{{ $value . '-' . $name }}"
+        <input type="radio" class="checkbox is-checkradio is-info" name="{{ $name }}"
+            id="{{ $key . '-' . $name }}" value="{{ $key }}"
+            {{ $default_value == $key ? 'checked' : null }}>
+        <label for="{{ $key . '-' . $name }}"
             {{ optional($input->label) ? ' class=has-text-weight-medium' : null }}>
-            {{ $key }}
+            {{ $value }}
         </label>
     @endforeach
 @endif

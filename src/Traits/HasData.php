@@ -10,8 +10,8 @@ trait HasData{
      */
     public $data = [];
 
-    public function data(array $data){
-        $hasKeys = !isset($data[0]);
+    public function data(array $data, bool $hasKeys = false){
+        // $hasKeys = !isset($data[0]);
         if(!$hasKeys){
             $newData = [];
             foreach($data as $item){
