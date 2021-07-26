@@ -13,6 +13,7 @@ class FormBuilderController extends Controller
     public function index()
     {
         $data = [1 => 'test1', 2 => 'test2', 3 => 'test3'];
+        $dataGroup = ['test' => ['test', 'test+'], 'test 2' => ['test', 'test-']];
 
         $form = $this->form('constructor.store', 'POST', true, 'NLDev FormBuilder')->submit()->parameters(['test']);
 
@@ -40,7 +41,10 @@ class FormBuilderController extends Controller
         // Select box
         $form->add([
             '<h1 class="title has-text-grey">Select boxes</h1>',
-            $this->input("select", 'select', 'Select')->data($data)->help('Ceci est un message d\'aide')->icon('list'),
+            [
+                $this->input("select", 'select', 'Select')->data($data)->help('Ceci est un message d\'aide')->icon('list'),
+                $this->input("select", 'select', 'Select')->group($dataGroup, true)->help('Ceci est un message d\'aide')->icon('list'),
+            ],
             [
                 $this->input("selectajax", 'select_ajax', 'Select ajax')->data($data)->target('select_ajax_target')->action(route('dumy_data'))->value("test2"),
                 $this->input("select", 'select_ajax_target', 'Select ajax target')->data(['test 4', 'test 5', 'test 6'])->value('test 5'),

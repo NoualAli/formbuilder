@@ -36,7 +36,7 @@ abstract class Field
      * Tableau des options du champ
      * @var array
      */
-    private $options = [];
+    protected $options = [];
 
     /**
      * @var bool

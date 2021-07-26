@@ -2,7 +2,8 @@
 
 namespace NLDev\FormBuilder\Traits;
 
-trait HasData{
+trait HasData
+{
     /**
      * Input data
      *
@@ -10,11 +11,11 @@ trait HasData{
      */
     public $data = [];
 
-    public function data(array $data, bool $hasKeys = false){
-        // $hasKeys = !isset($data[0]);
-        if(!$hasKeys){
+    public function data(array $data, bool $hasKeys = false)
+    {
+        if (!$hasKeys) {
             $newData = [];
-            foreach($data as $item){
+            foreach ($data as $item) {
                 $newData[$item] = $item;
             }
             $data = $newData;
